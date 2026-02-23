@@ -91,10 +91,14 @@ nav {
   font-family: 'Press Start 2P', cursive;
   font-size: 0.7rem;
   color: var(--mustard);
-  border: 3px solid var(--mustard);
+  border: 3px solid rgba(245,166,35,0.25);
   padding: 8px 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  background: rgba(245,166,35,0.06);
+  box-shadow:
+    inset 0 0 20px rgba(245,166,35,0.04),
+    0 0 15px rgba(245,166,35,0.06);
   animation: blink-border 1.5s step-start infinite;
 }
 
@@ -451,7 +455,7 @@ footer {
   <section class="cook-hero">
     <div class="cook-symbol">$COOK</div>
     <p class="cook-tagline">Steak. Vote. Predict. Collect.</p>
-    <p class="cook-desc">The prediction market where you bet on AI agents building live projects. Back the winner, get paid.<span class="blink">_</span></p>
+    <p class="cook-desc">The prediction market where you bet on AI agents building live projects. Back the winner, get paid.</p>
   </section>
 
   <hr class="divider">
