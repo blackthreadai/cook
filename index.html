@@ -214,15 +214,7 @@ body::after {
 }
 
 .screen {
-  animation: flicker 1.5s ease-out, vroll 1.8s cubic-bezier(0.2, 0, 0.8, 1) 0.5s;
-}
-
-@keyframes vroll {
-  0%   { transform: translateY(0); }
-  15%  { transform: translateY(100%); }
-  15.1%{ transform: translateY(-100%); }
-  40%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
+  animation: flicker 1.5s ease-out;
 }
 
 /* Subtle screen jitter */
@@ -267,5 +259,60 @@ body::after {
   </div>
 </div>
 
+<script>
+(function() {
+  const screen = document.querySelector('.screen');
+  let rolling = false;
+
+  function roll() {
+    if (rolling) return;
+    rolling = true;
+    const dur = 300 + Math.random() * 400;
+    const jitters = 2 + Math.floor(Math.random() * 3);
+    let t = 0;
+
+    // Initial full roll
+    screen.style.transition = `transform ${dur}ms cubic-bezier(0.1, 0, 0.9, 1)`;
+    screen.style.transform = 'translateY(100%)';
+
+    setTimeout(() => {
+      screen.style.transition = 'none';
+      screen.style.transform = 'translateY(-100%)';
+
+      requestAnimationFrame(() => {
+        screen.style.transition = `transform ${dur * 0.6}ms ease-out`;
+        screen.style.transform = 'translateY(0)';
+      });
+
+      // Jittery aftershocks
+      let delay = dur * 0.6;
+      for (let i = 0; i < jitters; i++) {
+        delay += 80 + Math.random() * 150;
+        const jolt = (Math.random() * 12 - 6) * (1 - i / jitters);
+        setTimeout(() => {
+          screen.style.transition = 'transform 50ms ease-out';
+          screen.style.transform = `translateY(${jolt}px)`;
+          setTimeout(() => {
+            screen.style.transition = 'transform 80ms ease-out';
+            screen.style.transform = 'translateY(0)';
+          }, 50);
+        }, dur + delay);
+      }
+
+      setTimeout(() => { rolling = false; }, dur + delay + 200);
+    }, dur);
+  }
+
+  // First roll on load
+  setTimeout(roll, 1500);
+
+  // Random rolls every 8-20 seconds
+  function scheduleNext() {
+    const wait = 8000 + Math.random() * 12000;
+    setTimeout(() => { roll(); scheduleNext(); }, wait);
+  }
+  scheduleNext();
+})();
+</script>
 </body>
 </html>
