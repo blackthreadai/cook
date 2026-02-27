@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cook.fun Logo - 2x Scale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #000;
+  color: #33ff33;
+  font-family: 'Press Start 2P', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+/* Phosphor scanlines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* CRT screen glow */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(51,255,51,0.03) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+.screen {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: clamp(4rem, 16vw, 7rem);
+  color: #33ff33;
+  text-shadow:
+    0 0 10px rgba(51,255,51,0.5),
+    0 0 40px rgba(51,255,51,0.2),
+    0 0 80px rgba(51,255,51,0.1);
+  letter-spacing: 12px;
+  line-height: 1.3;
+}
+
+.title span {
+  color: rgba(51,255,51,0.6);
+}
+
+/* Flicker effect on load */
+@keyframes flicker {
+  0% { opacity: 0; }
+  5% { opacity: 0.8; }
+  10% { opacity: 0.2; }
+  15% { opacity: 0.9; }
+  20% { opacity: 0.4; }
+  30% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.screen {
+  animation: flicker 1.5s ease-out;
+}
+
+/* Subtle text jitter */
+@keyframes jitter {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1px, 0); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
+}
+
+.title {
+  animation: jitter 0.15s infinite;
+}
+</style>
+</head>
+<body>
+
+<div class="screen">
+  <h1 class="title">cook<span>.fun</span></h1>
+</div>
+
+</body>
+</html>
