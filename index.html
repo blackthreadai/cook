@@ -182,6 +182,28 @@ body::after {
   animation: neonFlicker 4s ease-in-out infinite;
 }
 
+.terminal-link {
+  display: block;
+  margin-top: 36px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.35rem, 1vw, 0.45rem);
+  color: rgba(51,255,51,0.5);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+.terminal-link:hover {
+  color: #33ff33;
+  text-shadow: 0 0 10px rgba(51,255,51,0.5);
+}
+.blink-cursor {
+  animation: cursorBlink 1s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @keyframes neonFlicker {
   0%   { opacity: 1; background: #33ff33; box-shadow: 4px 4px 0 rgba(51,255,51,0.3), 0 0 20px rgba(51,255,51,0.2); }
   3%   { opacity: 0.4; background: #1a8a1a; box-shadow: none; }
@@ -255,6 +277,8 @@ body::after {
     <p class="tagline">May the odds be forever<br>in your flavor</p>
 
     <button class="btn" onclick="void(0)">Season 1 Soon</button>
+
+    <a href="https://x.com/cookdotfun" target="_blank" class="terminal-link">> FOLLOW @cookdotfun_<span class="blink-cursor">█</span></a>
 
   </div>
 </div>
