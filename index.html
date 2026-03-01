@@ -60,29 +60,15 @@ body::after {
   z-index: 2;
 }
 
-/* Decorative border like old Apple II screen frame */
+/* Full width content area */
 .frame {
-  border: 3px solid #33ff33;
   padding: 60px 48px;
   position: relative;
   overflow: hidden;
-  box-shadow:
-    0 0 20px rgba(51,255,51,0.1),
-    inset 0 0 60px rgba(51,255,51,0.03);
-  max-width: 640px;
+  width: 100%;
 }
 
-.frame::before,
-.frame::after {
-  content: '';
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  height: 1px;
-  background: rgba(51,255,51,0.2);
-}
-.frame::before { top: 8px; }
-.frame::after { bottom: 8px; }
+/* Border elements removed for full width design */
 
 /* Stars / decorative dashes */
 .stars {
@@ -289,7 +275,7 @@ body::after {
   left: 0;
   right: 0;
   width: 100%;
-  height: 2px;
+  height: 8px;
   pointer-events: none;
   z-index: 1000;
   background: linear-gradient(
@@ -314,7 +300,7 @@ body::after {
     const h = window.innerHeight;
     const speed = 2 + Math.random() * 3; // 2-5 seconds for authentic CRT feel
     bar.style.display = 'block';
-    bar.style.top = '-2px';
+    bar.style.top = '-8px';
     bar.style.transition = `top ${speed}s linear`;
 
     requestAnimationFrame(() => {
