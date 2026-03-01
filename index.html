@@ -284,40 +284,37 @@ body::after {
 </div>
 
 <style>
-.sync-bar {
-  position: absolute;
+.crt-refresh {
+  position: fixed;
   left: 0;
   right: 0;
-  height: 40px;
+  width: 100%;
+  height: 2px;
   pointer-events: none;
-  z-index: 100;
+  z-index: 1000;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(51,255,51,0.06) 15%,
-    rgba(51,255,51,0.12) 40%,
-    rgba(200,255,200,0.08) 50%,
-    rgba(51,255,51,0.12) 60%,
-    rgba(51,255,51,0.06) 85%,
+    rgba(255,255,255,0.15) 30%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.15) 70%,
     transparent 100%
   );
   display: none;
+  box-shadow: 0 0 4px rgba(255,255,255,0.1);
 }
 </style>
 <script>
 (function() {
-  const frame = document.querySelector('.frame');
   const bar = document.createElement('div');
-  bar.className = 'sync-bar';
-  frame.style.position = 'relative';
-  frame.appendChild(bar);
+  bar.className = 'crt-refresh';
+  document.body.appendChild(bar);
 
   function sweep() {
-    const h = frame.offsetHeight;
-    const speed = 1.2 + Math.random() * 1.5; // seconds
+    const h = window.innerHeight;
+    const speed = 2 + Math.random() * 3; // 2-5 seconds for authentic CRT feel
     bar.style.display = 'block';
-    bar.style.top = '-40px';
-    bar.style.height = (30 + Math.random() * 40) + 'px';
+    bar.style.top = '-2px';
     bar.style.transition = `top ${speed}s linear`;
 
     requestAnimationFrame(() => {
@@ -333,11 +330,11 @@ body::after {
   }
 
   // First sweep on load
-  setTimeout(sweep, 2000);
+  setTimeout(sweep, 3000);
 
-  // Random sweeps
+  // Random sweeps - authentic CRT timing
   function scheduleNext() {
-    const wait = 6000 + Math.random() * 15000;
+    const wait = 8000 + Math.random() * 20000; // 8-28 seconds apart
     setTimeout(() => { sweep(); scheduleNext(); }, wait);
   }
   scheduleNext();
