@@ -262,7 +262,7 @@ body::after {
 
     <p class="tagline">May the odds be forever<br>in your flavor</p>
 
-    <button class="btn" onclick="void(0)">Season 1 Soon</button>
+    <button class="btn" onclick="void(0)">season one soon</button>
 
     <a href="https://x.com/realcookdotfun" target="_blank" class="terminal-link">> FOLLOW @realcookdotfun</a>
 
@@ -275,19 +275,19 @@ body::after {
   left: 0;
   right: 0;
   width: 100%;
-  height: 8px;
+  height: 16px;
   pointer-events: none;
   z-index: 1000;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(255,255,255,0.15) 30%,
-    rgba(255,255,255,0.25) 50%,
-    rgba(255,255,255,0.15) 70%,
+    rgba(51,255,51,0.2) 30%,
+    rgba(51,255,51,0.35) 50%,
+    rgba(51,255,51,0.2) 70%,
     transparent 100%
   );
   display: none;
-  box-shadow: 0 0 4px rgba(255,255,255,0.1);
+  box-shadow: 0 0 6px rgba(51,255,51,0.15);
 }
 </style>
 <script>
@@ -298,9 +298,9 @@ body::after {
 
   function sweep() {
     const h = window.innerHeight;
-    const speed = 2 + Math.random() * 3; // 2-5 seconds for authentic CRT feel
+    const speed = 4 + Math.random() * 4; // 4-8 seconds for slower, more authentic feel
     bar.style.display = 'block';
-    bar.style.top = '-8px';
+    bar.style.top = '-16px';
     bar.style.transition = `top ${speed}s linear`;
 
     requestAnimationFrame(() => {
